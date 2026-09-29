@@ -35,22 +35,22 @@ export const SetRow: React.FC<SetRowProps> = ({
 
   return (
     <div
-      className={`rounded-2xl p-4 sm:p-5 space-y-3.5 border transition-all ${
+      className={`rounded-2xl p-4 space-y-3 border transition-all ${
         set.is_completed
-          ? 'bg-emerald-50/70 border-emerald-200 shadow-2xs'
-          : 'bg-slate-50 border-slate-200/90 shadow-2xs'
+          ? 'bg-emerald-50/80 border-emerald-200'
+          : 'bg-slate-50 border-slate-200'
       }`}
     >
-      {/* Top row: Set badge, Target info, Numeric Inputs, Checkmark button */}
+      {/* Top row: Set badge, Previous info, Inputs, Checkmark button */}
       <div className="flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap">
         {/* Set Indicator & Ghost-text previous performance */}
-        <div className="flex flex-col min-w-[85px]">
-          <span className="text-xs font-black px-3 py-1 rounded-xl bg-white border border-slate-200 text-slate-950 w-fit shadow-2xs">
+        <div className="flex flex-col min-w-[75px]">
+          <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-900 w-fit shadow-xs">
             SET {set.set_number}
           </span>
           {set.prev_weight !== undefined && set.prev_reps !== undefined && (
-            <span className="text-xs text-slate-500 mt-1.5 font-medium leading-tight">
-              Target: <span className="text-slate-900 font-bold">{formatWeight(set.prev_weight)} {unit} × {set.prev_reps}</span>
+            <span className="text-xs text-slate-500 mt-1 font-medium leading-tight">
+              Prev: <span className="text-slate-800 font-bold">{formatWeight(set.prev_weight)} {unit} × {set.prev_reps}</span>
             </span>
           )}
         </div>
@@ -68,9 +68,9 @@ export const SetRow: React.FC<SetRowProps> = ({
                 const val = e.target.value.replace(/[^0-9.]/g, '');
                 onUpdate({ weight: val === '' ? '' : val });
               }}
-              className="w-22 min-h-[48px] h-12 text-center font-mono font-black text-sm bg-white border border-slate-300 focus:border-slate-950 rounded-2xl text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-950/10 shadow-2xs transition-all"
+              className="w-20 min-h-touch h-11 text-center font-mono font-bold text-sm bg-white border border-slate-300 focus:border-slate-900 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 shadow-xs transition-all"
             />
-            <span className="absolute right-2.5 bottom-1.5 text-[10px] text-slate-400 font-bold uppercase pointer-events-none">
+            <span className="absolute right-2 bottom-1 text-[10px] text-slate-400 font-bold uppercase pointer-events-none">
               {unit}
             </span>
           </div>
@@ -86,22 +86,22 @@ export const SetRow: React.FC<SetRowProps> = ({
                 const val = e.target.value.replace(/[^0-9]/g, '');
                 onUpdate({ reps: val === '' ? '' : val });
               }}
-              className="w-18 min-h-[48px] h-12 text-center font-mono font-black text-sm bg-white border border-slate-300 focus:border-slate-950 rounded-2xl text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-950/10 shadow-2xs transition-all"
+              className="w-16 min-h-touch h-11 text-center font-mono font-bold text-sm bg-white border border-slate-300 focus:border-slate-900 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-900/10 shadow-xs transition-all"
             />
-            <span className="absolute right-2 bottom-1.5 text-[10px] text-slate-400 font-bold pointer-events-none">
+            <span className="absolute right-1.5 bottom-1 text-[10px] text-slate-400 font-bold pointer-events-none">
               reps
             </span>
           </div>
 
-          {/* Set Completion Button (48x48px touch target with tactile finish) */}
+          {/* Set Completion Button (Meets 44x44px minimum touch target, dark flat button or emerald when complete) */}
           <button
             type="button"
             onClick={onToggleComplete}
             aria-label="Mark set complete"
-            className={`min-h-[48px] min-w-[48px] h-12 w-12 rounded-2xl flex items-center justify-center font-black active:scale-95 transition-all shadow-xs ${
+            className={`min-h-touch min-w-touch h-11 w-11 rounded-xl flex items-center justify-center font-bold active:scale-95 transition-all shadow-xs ${
               set.is_completed
                 ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                : 'bg-slate-950 hover:bg-slate-800 text-white'
+                : 'bg-slate-900 hover:bg-slate-800 text-white'
             }`}
           >
             <Check className={`w-5 h-5 ${set.is_completed ? 'stroke-[3]' : 'stroke-2'}`} />
