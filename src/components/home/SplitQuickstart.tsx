@@ -51,32 +51,32 @@ export const SplitQuickstart: React.FC<SplitQuickstartProps> = ({
   const splitsConfig: { name: SplitType; label: string; desc: string; badge: string }[] = [
     {
       name: 'Push',
-      label: 'Push Day',
-      desc: 'Chest, Shoulders & Triceps',
+      label: 'Push Hypertrophy',
+      desc: 'Chest, Shoulders & Triceps Focus',
       badge: 'bg-amber-50 text-amber-800 border-amber-200'
     },
     {
       name: 'Pull',
-      label: 'Pull Day',
-      desc: 'Back, Lats & Biceps',
+      label: 'Pull & Lats',
+      desc: 'Back, Lats, Traps & Biceps Focus',
       badge: 'bg-emerald-50 text-emerald-800 border-emerald-200'
     },
     {
       name: 'Legs',
-      label: 'Leg Day',
-      desc: 'Quads, Hamstrings & Calves',
+      label: 'Leg Day Volume',
+      desc: 'Quads, Hamstrings, Glutes & Calves',
       badge: 'bg-blue-50 text-blue-800 border-blue-200'
     },
     {
       name: 'Arms',
-      label: 'Arms & Shoulders',
-      desc: 'Biceps, Triceps & Delts Focus',
+      label: 'Arms & Delts',
+      desc: 'Biceps, Triceps & Lateral Delts Focus',
       badge: 'bg-purple-50 text-purple-800 border-purple-200'
     },
     {
       name: 'Core',
-      label: 'Core & Abs',
-      desc: 'Abdominals, Obliques & Lower Back',
+      label: 'Core & Trunk',
+      desc: 'Abdominals, Obliques & Lumbar Stability',
       badge: 'bg-rose-50 text-rose-800 border-rose-200'
     }
   ];
@@ -94,30 +94,30 @@ export const SplitQuickstart: React.FC<SplitQuickstartProps> = ({
     <div className="space-y-6 pb-24">
       {/* Draft Recovery Banner if active session was interrupted */}
       {hasDraft && draftInfo && (
-        <div className="bg-amber-50/80 border border-amber-200 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
-          <div className="flex items-start gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 shrink-0">
-              <AlertTriangle className="w-5 h-5" />
+        <div className="bg-amber-50/90 border border-amber-200/90 rounded-3xl p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 shrink-0 shadow-2xs">
+              <AlertTriangle className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-amber-900 uppercase tracking-wider">
+              <h4 className="text-xs font-black text-amber-900 uppercase tracking-wider">
                 Unfinished Workout In Progress
               </h4>
-              <p className="text-base font-bold text-slate-900 mt-0.5">{draftInfo.title}</p>
-              <p className="text-xs text-slate-600">Zero-data-loss session draft preserved in local storage</p>
+              <p className="text-lg font-black text-slate-950 mt-0.5">{draftInfo.title}</p>
+              <p className="text-xs text-slate-600 font-medium">Zero-data-loss session draft preserved in local memory</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 self-end sm:self-center">
             <button
               onClick={onDiscardDraft}
-              className="min-h-touch px-4 rounded-xl border border-slate-300 hover:bg-slate-100 text-xs font-semibold text-slate-700 transition-colors"
+              className="min-h-touch px-4 py-2.5 rounded-2xl border border-slate-300 hover:bg-slate-100 text-xs font-bold text-slate-700 transition-colors shadow-2xs"
             >
               Discard
             </button>
             <button
               onClick={onResumeDraft}
-              className="min-h-touch px-5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow-sm flex items-center gap-2 transition-all active:scale-95"
+              className="min-h-touch px-5 py-2.5 rounded-2xl bg-slate-950 hover:bg-slate-800 text-white font-extrabold text-xs shadow-sm flex items-center gap-2 transition-all active:scale-95"
             >
               <span>Resume Session</span>
               <ArrowRight className="w-4 h-4" />
@@ -127,18 +127,20 @@ export const SplitQuickstart: React.FC<SplitQuickstartProps> = ({
       )}
 
       {/* Intro banner */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-slate-700" />
-          <h2 className="text-base font-bold text-slate-900">1-Tap &quot;Clone Last Workout&quot; Quickstart</h2>
+      <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-sm">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800">
+            <Sparkles className="w-4 h-4 text-slate-900" />
+          </div>
+          <h2 className="text-lg font-black text-slate-950 tracking-tight">1-Tap &quot;Clone Last Workout&quot; Quickstart</h2>
         </div>
-        <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-          Select a split below to clone your previous session. Automatically pulls all exercises and injects your previous weights and reps as ghost-text targets.
+        <p className="text-xs text-slate-500 mt-2 leading-relaxed font-medium">
+          Select a split below to clone your previous workout. Automatically pulls all exercises and injects your previous weights and reps as ghost-text targets.
         </p>
       </div>
 
       {/* Responsive Splits Grid: 1 col on mobile, 2 cols on tablet/desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {splitsConfig.map(split => {
           const lastSession = splitHistory[split.name];
           const hasPrevious = Boolean(lastSession);
@@ -146,30 +148,30 @@ export const SplitQuickstart: React.FC<SplitQuickstartProps> = ({
           return (
             <div
               key={split.name}
-              className="bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 sm:p-6 transition-all shadow-sm flex flex-col justify-between"
+              className="bg-white border border-slate-200/80 hover:border-slate-300/90 rounded-3xl p-6 sm:p-7 transition-all shadow-sm flex flex-col justify-between space-y-5"
             >
               <div>
                 <div className="flex items-center justify-between">
-                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border uppercase tracking-wider ${split.badge}`}>
+                  <span className={`text-[11px] font-black px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${split.badge}`}>
                     {split.name}
                   </span>
-                  <span className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
+                  <span className="text-xs text-slate-400 flex items-center gap-1.5 font-semibold">
                     <Calendar className="w-3.5 h-3.5 text-slate-400" />
                     {formatDaysAgo(lastSession?.started_at)}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 mt-3">
+                <h3 className="text-xl font-black text-slate-950 mt-3 tracking-tight">
                   {split.label}
                 </h3>
-                <p className="text-xs text-slate-500 mt-1">{split.desc}</p>
+                <p className="text-xs text-slate-500 mt-1 font-medium">{split.desc}</p>
               </div>
 
-              {/* Action Buttons: Dark flat buttons with rounded corners */}
-              <div className="flex items-center gap-2.5 pt-5 mt-4 border-t border-slate-100">
+              {/* Action Buttons: Sleek full-width dark button with rounded corners */}
+              <div className="flex items-center gap-2.5 pt-4 border-t border-slate-100">
                 <button
                   onClick={() => onStartWorkout(split.name, `${split.name} Session`, true)}
-                  className="flex-1 min-h-touch px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-95 text-white font-bold text-xs shadow-sm flex items-center justify-center gap-2 transition-all"
+                  className="flex-1 min-h-touch h-11 px-4 py-2.5 rounded-2xl bg-slate-950 hover:bg-slate-800 active:scale-95 text-white font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition-all"
                 >
                   <Copy className="w-3.5 h-3.5" />
                   <span>{hasPrevious ? 'Clone (1-Tap)' : 'Start Split'}</span>
@@ -178,7 +180,7 @@ export const SplitQuickstart: React.FC<SplitQuickstartProps> = ({
                 <button
                   onClick={() => onStartWorkout(split.name, `${split.name} Session`, false)}
                   title="Start fresh without cloning previous weights"
-                  className="min-h-touch px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-xs font-semibold text-slate-700 flex items-center justify-center gap-1.5 transition-all"
+                  className="min-h-touch h-11 px-4 py-2.5 rounded-2xl border border-slate-200 hover:bg-slate-100 text-xs font-bold text-slate-700 flex items-center justify-center gap-1.5 transition-all shadow-2xs"
                 >
                   <Play className="w-3.5 h-3.5 text-slate-500" />
                   <span>Blank</span>
